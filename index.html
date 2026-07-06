@@ -1,0 +1,1289 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Arthur Morgan | Ultimate Bio</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700;900&family=Rajdhani:wght@300;400;600;700&display=swap');
+
+        /* ---------- RESET & BASE ---------- */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Rajdhani', sans-serif;
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: #070b14;
+            overflow: hidden;
+            position: relative;
+            cursor: none;
+        }
+
+        /* ---------- CURSOR GLOW ---------- */
+        .cursor-glow {
+            position: fixed;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 200, 255, 0.25), transparent 70%);
+            pointer-events: none;
+            z-index: 999;
+            transform: translate(-50%, -50%);
+            transition: width 0.2s, height 0.2s, background 0.2s;
+            mix-blend-mode: screen;
+        }
+
+        .cursor-glow.active {
+            width: 80px;
+            height: 80px;
+            background: radial-gradient(circle, rgba(0, 200, 255, 0.4), transparent 70%);
+        }
+
+        /* ---------- BACKGROUND ---------- */
+        .bg-layer {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+        }
+
+        .bg-layer::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 20% 50%, rgba(0, 100, 255, 0.08) 0%, transparent 60%),
+                radial-gradient(ellipse at 80% 50%, rgba(0, 200, 255, 0.05) 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 100%, rgba(0, 50, 150, 0.06) 0%, transparent 50%);
+        }
+
+        .bg-grid {
+            position: absolute;
+            inset: 0;
+            background-image:
+                linear-gradient(rgba(0, 150, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 150, 255, 0.03) 1px, transparent 1px);
+            background-size: 60px 60px;
+            mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+            -webkit-mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
+        }
+
+        /* ---------- PARTICLES ---------- */
+        .particle {
+            position: absolute;
+            border-radius: 50%;
+            background: radial-gradient(circle, #00d4ff, transparent 70%);
+            animation: floatUp linear infinite;
+            z-index: 0;
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        @keyframes floatUp {
+            0% {
+                transform: translateY(100vh) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* ---------- ORBS ---------- */
+        .orb {
+            position: fixed;
+            border-radius: 50%;
+            filter: blur(100px);
+            z-index: 0;
+            opacity: 0.3;
+            animation: orbPulse 6s ease-in-out infinite alternate;
+        }
+
+        .orb:nth-child(1) {
+            width: 500px;
+            height: 500px;
+            background: #0055ff;
+            top: -150px;
+            right: -100px;
+        }
+
+        .orb:nth-child(2) {
+            width: 400px;
+            height: 400px;
+            background: #00aaff;
+            bottom: -100px;
+            left: -100px;
+            animation-delay: 3s;
+            opacity: 0.2;
+        }
+
+        @keyframes orbPulse {
+            0% {
+                transform: scale(1) translate(0, 0);
+            }
+            100% {
+                transform: scale(1.3) translate(30px, -30px);
+            }
+        }
+
+        /* ---------- CARD 3D ---------- */
+        .card {
+            position: relative;
+            z-index: 1;
+            background: rgba(10, 16, 30, 0.7);
+            backdrop-filter: blur(40px);
+            -webkit-backdrop-filter: blur(40px);
+            border: 1px solid rgba(0, 150, 255, 0.15);
+            border-radius: 40px;
+            padding: 50px 40px 35px;
+            max-width: 580px;
+            width: 100%;
+            text-align: center;
+            box-shadow:
+                0 40px 100px rgba(0, 0, 0, 0.6),
+                inset 0 1px 0 rgba(0, 200, 255, 0.05),
+                0 0 80px rgba(0, 100, 255, 0.03);
+            animation: cardEntry 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: all 0.5s ease;
+            transform-style: preserve-3d;
+            perspective: 800px;
+        }
+
+        .card:hover {
+            border-color: rgba(0, 200, 255, 0.3);
+            box-shadow: 0 50px 120px rgba(0, 0, 0, 0.7), 0 0 100px rgba(0, 100, 255, 0.05);
+        }
+
+        @keyframes cardEntry {
+            from {
+                opacity: 0;
+                transform: translateY(60px) scale(0.96);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        /* ---------- HEADER ---------- */
+        .header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding-bottom: 18px;
+            border-bottom: 1px solid rgba(0, 150, 255, 0.06);
+            margin-bottom: 20px;
+        }
+
+        .status {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 10px;
+            font-weight: 600;
+            color: #00d4ff;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .status::before {
+            content: '';
+            width: 7px;
+            height: 7px;
+            background: #00d4ff;
+            border-radius: 50%;
+            box-shadow: 0 0 20px #00d4ff, 0 0 60px #00d4ff;
+            animation: blink 1.5s ease-in-out infinite;
+        }
+
+        @keyframes blink {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.2;
+            }
+        }
+
+        .online-time {
+            font-size: 9px;
+            font-family: 'Orbitron', sans-serif;
+            color: rgba(0, 200, 255, 0.2);
+            letter-spacing: 1px;
+        }
+
+        .tag {
+            font-size: 9px;
+            font-family: 'Orbitron', sans-serif;
+            color: rgba(0, 200, 255, 0.2);
+            letter-spacing: 3px;
+            background: rgba(0, 150, 255, 0.03);
+            padding: 4px 12px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 150, 255, 0.05);
+        }
+
+        /* ---------- AVATAR ---------- */
+        .avatar-wrapper {
+            position: relative;
+            width: 140px;
+            height: 140px;
+            margin: 0 auto 18px;
+        }
+
+        .avatar-ring {
+            position: absolute;
+            inset: -3px;
+            border-radius: 50%;
+            background: conic-gradient(from 0deg, #0044ff, #00ddff, #0044ff, #00ddff, #0044ff);
+            animation: spin 5s linear infinite;
+            padding: 2px;
+        }
+
+        @keyframes spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        .avatar {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, #0f1f3a, #080c18);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 58px;
+            font-weight: 900;
+            font-family: 'Orbitron', sans-serif;
+            color: #00d4ff;
+            position: relative;
+            z-index: 1;
+            border: 2px solid #080c18;
+            text-shadow: 0 0 40px rgba(0, 200, 255, 0.2);
+            letter-spacing: 4px;
+            transition: transform 0.3s;
+        }
+
+        .avatar:hover {
+            transform: scale(1.05);
+        }
+
+        .avatar-glow {
+            position: absolute;
+            inset: -25px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(0, 150, 255, 0.12), transparent 70%);
+            filter: blur(30px);
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%,
+            100% {
+                transform: scale(1);
+                opacity: 0.4;
+            }
+            50% {
+                transform: scale(1.5);
+                opacity: 1;
+            }
+        }
+
+        /* ---------- NAME ---------- */
+        h1 {
+            font-size: 34px;
+            font-weight: 700;
+            font-family: 'Orbitron', sans-serif;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            background: linear-gradient(135deg, #00ccff, #0066ff, #00ccff);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+            margin-bottom: 2px;
+        }
+
+        @keyframes shimmer {
+            0%,
+            100% {
+                background-position: 0% 50%;
+            }
+            50% {
+                background-position: 100% 50%;
+            }
+        }
+
+        .subtitle {
+            font-size: 11px;
+            font-weight: 300;
+            color: rgba(0, 200, 255, 0.35);
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 22px;
+            font-family: 'Orbitron', sans-serif;
+        }
+
+        .subtitle span {
+            color: #00d4ff;
+            opacity: 0.6;
+        }
+
+        /* ---------- BIO (TYPEWRITER) ---------- */
+        .bio-wrapper {
+            background: rgba(0, 50, 120, 0.06);
+            padding: 22px 26px;
+            border-radius: 20px;
+            border: 1px solid rgba(0, 150, 255, 0.06);
+            margin-bottom: 28px;
+            position: relative;
+            backdrop-filter: blur(10px);
+            min-height: 100px;
+        }
+
+        .bio-wrapper::before {
+            content: '◆';
+            position: absolute;
+            top: -8px;
+            right: 20px;
+            font-size: 12px;
+            color: rgba(0, 200, 255, 0.15);
+        }
+
+        .bio {
+            font-size: 14px;
+            font-weight: 300;
+            line-height: 2.2;
+            color: rgba(200, 225, 255, 0.8);
+            text-align: right;
+            min-height: 80px;
+        }
+
+        .bio .hl {
+            color: #00d4ff;
+            font-weight: 600;
+            text-shadow: 0 0 30px rgba(0, 200, 255, 0.08);
+        }
+
+        .bio .cursor-blink {
+            display: inline-block;
+            width: 2px;
+            height: 18px;
+            background: #00d4ff;
+            animation: blink 0.8s step-end infinite;
+            vertical-align: middle;
+            margin-right: 2px;
+        }
+
+        .bio .line {
+            display: block;
+        }
+
+        /* ---------- QUOTE ---------- */
+        .quote-box {
+            font-size: 12px;
+            font-style: italic;
+            color: rgba(0, 200, 255, 0.3);
+            padding: 10px 16px;
+            border-radius: 12px;
+            background: rgba(0, 50, 120, 0.04);
+            border: 1px solid rgba(0, 150, 255, 0.04);
+            margin-bottom: 22px;
+            text-align: center;
+            font-weight: 300;
+            letter-spacing: 0.5px;
+        }
+
+        .quote-box .qhl {
+            color: rgba(0, 200, 255, 0.5);
+        }
+
+        /* ---------- STATS ---------- */
+        .stats {
+            display: flex;
+            justify-content: space-around;
+            gap: 10px;
+            margin-bottom: 25px;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            background: rgba(0, 50, 120, 0.04);
+            padding: 12px 18px;
+            border-radius: 14px;
+            border: 1px solid rgba(0, 150, 255, 0.04);
+            min-width: 80px;
+            flex: 1;
+            transition: all 0.3s;
+        }
+
+        .stat-item:hover {
+            border-color: rgba(0, 200, 255, 0.1);
+            background: rgba(0, 80, 200, 0.04);
+        }
+
+        .stat-number {
+            font-family: 'Orbitron', sans-serif;
+            font-size: 20px;
+            font-weight: 700;
+            color: #00d4ff;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(0, 200, 255, 0.2);
+            margin-top: 4px;
+        }
+
+        /* ---------- LINKS ---------- */
+        .links {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            justify-content: center;
+            margin-bottom: 25px;
+        }
+
+        .links a {
+            font-family: 'Rajdhani', sans-serif;
+            font-weight: 600;
+            font-size: 12px;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+            padding: 14px 28px;
+            border-radius: 14px;
+            background: rgba(0, 80, 200, 0.04);
+            border: 1px solid rgba(0, 150, 255, 0.08);
+            color: rgba(180, 215, 255, 0.7);
+            text-decoration: none;
+            transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            flex: 1 1 auto;
+            justify-content: center;
+            min-width: 120px;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .links a:hover {
+            background: rgba(0, 100, 255, 0.08);
+            border-color: rgba(0, 200, 255, 0.25);
+            color: #00d4ff;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 40px rgba(0, 100, 255, 0.06);
+        }
+
+        .links a .icon {
+            font-size: 16px;
+        }
+
+        .links a .copy-tip {
+            position: absolute;
+            bottom: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            font-size: 9px;
+            color: #00d4ff;
+            opacity: 0;
+            transition: opacity 0.3s;
+            background: rgba(0, 50, 120, 0.3);
+            padding: 2px 12px;
+            border-radius: 8px;
+            white-space: nowrap;
+        }
+
+        .links a .copy-tip.show {
+            opacity: 1;
+        }
+
+        /* ---------- LEVEL ---------- */
+        .level {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 150, 255, 0.05);
+            font-size: 10px;
+            font-weight: 400;
+            font-family: 'Orbitron', sans-serif;
+            color: rgba(0, 200, 255, 0.2);
+            letter-spacing: 2px;
+        }
+
+        .level .lvl {
+            color: rgba(0, 200, 255, 0.4);
+            font-weight: 700;
+            cursor: pointer;
+            transition: all 0.3s;
+            user-select: none;
+        }
+
+        .level .lvl:hover {
+            color: #00d4ff;
+            text-shadow: 0 0 20px rgba(0, 200, 255, 0.2);
+        }
+
+        .level .bar-wrap {
+            flex: 1;
+            height: 3px;
+            background: rgba(0, 100, 255, 0.06);
+            border-radius: 10px;
+            margin: 0 16px;
+            overflow: hidden;
+            cursor: pointer;
+        }
+
+        .level .bar-fill {
+            height: 100%;
+            width: 76%;
+            background: linear-gradient(90deg, #0044ff, #00ddff);
+            border-radius: 10px;
+            box-shadow: 0 0 30px rgba(0, 200, 255, 0.15);
+            animation: fillBar 2.5s ease-out;
+            transition: width 0.5s ease;
+        }
+
+        @keyframes fillBar {
+            from {
+                width: 0%;
+            }
+            to {
+                width: 76%;
+            }
+        }
+
+        .level .xp {
+            color: #00d4ff;
+            font-weight: 600;
+            font-size: 9px;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+
+        .level .xp:hover {
+            text-shadow: 0 0 20px rgba(0, 200, 255, 0.2);
+        }
+
+        /* ---------- CORNERS ---------- */
+        .corner {
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            border-color: rgba(0, 200, 255, 0.04);
+            border-style: solid;
+            border-width: 0;
+            pointer-events: none;
+        }
+
+        .corner-tl {
+            top: 12px;
+            left: 12px;
+            border-top-width: 1px;
+            border-left-width: 1px;
+            border-radius: 4px 0 0 0;
+        }
+        .corner-tr {
+            top: 12px;
+            right: 12px;
+            border-top-width: 1px;
+            border-right-width: 1px;
+            border-radius: 0 4px 0 0;
+        }
+        .corner-bl {
+            bottom: 12px;
+            left: 12px;
+            border-bottom-width: 1px;
+            border-left-width: 1px;
+            border-radius: 0 0 0 4px;
+        }
+        .corner-br {
+            bottom: 12px;
+            right: 12px;
+            border-bottom-width: 1px;
+            border-right-width: 1px;
+            border-radius: 0 0 4px 0;
+        }
+
+        /* ---------- THEME TOGGLE ---------- */
+        .theme-toggle {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 100;
+            background: rgba(10, 16, 30, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 150, 255, 0.1);
+            color: rgba(0, 200, 255, 0.4);
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            font-size: 18px;
+            cursor: pointer;
+            transition: all 0.4s;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .theme-toggle:hover {
+            border-color: rgba(0, 200, 255, 0.3);
+            color: #00d4ff;
+            transform: rotate(30deg);
+        }
+
+        /* ---------- LIGHT THEME ---------- */
+        body.light-theme {
+            background: #e8f0ff;
+        }
+
+        body.light-theme .card {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(40px);
+            border-color: rgba(0, 100, 255, 0.1);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.08);
+        }
+
+        body.light-theme .card:hover {
+            border-color: rgba(0, 150, 255, 0.2);
+        }
+
+        body.light-theme .header {
+            border-bottom-color: rgba(0, 100, 255, 0.05);
+        }
+
+        body.light-theme .status {
+            color: #0055ff;
+        }
+
+        body.light-theme .status::before {
+            background: #0055ff;
+            box-shadow: 0 0 20px #0055ff;
+        }
+
+        body.light-theme .tag {
+            color: rgba(0, 100, 255, 0.2);
+            border-color: rgba(0, 100, 255, 0.05);
+        }
+
+        body.light-theme h1 {
+            background: linear-gradient(135deg, #0044cc, #0066ff, #0044cc);
+            background-size: 200% 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmer 3s ease-in-out infinite;
+        }
+
+        body.light-theme .subtitle {
+            color: rgba(0, 100, 255, 0.2);
+        }
+
+        body.light-theme .subtitle span {
+            color: #0066ff;
+        }
+
+        body.light-theme .bio-wrapper {
+            background: rgba(0, 50, 150, 0.03);
+            border-color: rgba(0, 100, 255, 0.05);
+        }
+
+        body.light-theme .bio {
+            color: rgba(20, 40, 80, 0.8);
+        }
+
+        body.light-theme .bio .hl {
+            color: #0055ff;
+        }
+
+        body.light-theme .bio-wrapper::before {
+            color: rgba(0, 100, 255, 0.1);
+        }
+
+        body.light-theme .quote-box {
+            color: rgba(0, 100, 255, 0.3);
+            border-color: rgba(0, 100, 255, 0.04);
+        }
+
+        body.light-theme .quote-box .qhl {
+            color: rgba(0, 100, 255, 0.5);
+        }
+
+        body.light-theme .stat-item {
+            background: rgba(0, 50, 150, 0.02);
+            border-color: rgba(0, 100, 255, 0.04);
+        }
+
+        body.light-theme .stat-item:hover {
+            border-color: rgba(0, 100, 255, 0.1);
+        }
+
+        body.light-theme .stat-number {
+            color: #0055ff;
+        }
+
+        body.light-theme .stat-label {
+            color: rgba(0, 100, 255, 0.2);
+        }
+
+        body.light-theme .links a {
+            background: rgba(0, 50, 150, 0.02);
+            border-color: rgba(0, 100, 255, 0.05);
+            color: rgba(20, 40, 80, 0.5);
+        }
+
+        body.light-theme .links a:hover {
+            background: rgba(0, 50, 150, 0.05);
+            border-color: rgba(0, 100, 255, 0.15);
+            color: #0055ff;
+        }
+
+        body.light-theme .level {
+            border-top-color: rgba(0, 100, 255, 0.05);
+            color: rgba(0, 100, 255, 0.15);
+        }
+
+        body.light-theme .level .lvl {
+            color: rgba(0, 100, 255, 0.3);
+        }
+
+        body.light-theme .level .xp {
+            color: #0055ff;
+        }
+
+        body.light-theme .level .bar-wrap {
+            background: rgba(0, 100, 255, 0.05);
+        }
+
+        body.light-theme .level .bar-fill {
+            background: linear-gradient(90deg, #0044cc, #0066ff);
+        }
+
+        body.light-theme .corner {
+            border-color: rgba(0, 100, 255, 0.04);
+        }
+
+        body.light-theme .theme-toggle {
+            background: rgba(255, 255, 255, 0.6);
+            backdrop-filter: blur(20px);
+            border-color: rgba(0, 100, 255, 0.05);
+            color: rgba(0, 100, 255, 0.3);
+        }
+
+        body.light-theme .theme-toggle:hover {
+            border-color: rgba(0, 100, 255, 0.15);
+            color: #0055ff;
+        }
+
+        body.light-theme .cursor-glow {
+            background: radial-gradient(circle, rgba(0, 100, 255, 0.15), transparent 70%);
+        }
+
+        /* ---------- RESPONSIVE ---------- */
+        @media (max-width: 500px) {
+            .card {
+                padding: 30px 18px 25px;
+                border-radius: 28px;
+                margin: 10px;
+            }
+
+            h1 {
+                font-size: 24px;
+                letter-spacing: 4px;
+            }
+
+            .avatar-wrapper {
+                width: 110px;
+                height: 110px;
+            }
+
+            .avatar {
+                font-size: 44px;
+            }
+
+            .bio {
+                font-size: 13px;
+            }
+
+            .bio-wrapper {
+                padding: 16px 18px;
+            }
+
+            .links a {
+                font-size: 10px;
+                padding: 12px 18px;
+                min-width: 80px;
+            }
+
+            .subtitle {
+                font-size: 9px;
+                letter-spacing: 5px;
+            }
+
+            .level {
+                font-size: 8px;
+                flex-wrap: wrap;
+                gap: 10px;
+                justify-content: center;
+            }
+            .level .bar-wrap {
+                width: 100%;
+                order: 3;
+                margin: 0;
+            }
+
+            .stats {
+                gap: 6px;
+            }
+            .stat-item {
+                padding: 8px 12px;
+                min-width: 60px;
+            }
+            .stat-number {
+                font-size: 16px;
+            }
+
+            .theme-toggle {
+                top: 10px;
+                right: 10px;
+                width: 32px;
+                height: 32px;
+                font-size: 14px;
+            }
+
+            .quote-box {
+                font-size: 11px;
+                padding: 8px 12px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- CURSOR GLOW -->
+    <div class="cursor-glow" id="cursorGlow"></div>
+
+    <!-- THEME TOGGLE -->
+    <button class="theme-toggle" id="themeToggle" title="Toggle Theme">🌙</button>
+
+    <!-- BACKGROUND -->
+    <div class="bg-layer">
+        <div class="bg-grid"></div>
+    </div>
+
+    <div class="orb"></div>
+    <div class="orb"></div>
+
+    <!-- CARD -->
+    <div class="card" id="card3d">
+
+        <div class="corner corner-tl"></div>
+        <div class="corner corner-tr"></div>
+        <div class="corner corner-bl"></div>
+        <div class="corner corner-br"></div>
+
+        <!-- HEADER -->
+        <div class="header">
+            <div class="status">ONLINE</div>
+            <div class="online-time" id="onlineTime">⏱ 00:00:00</div>
+            <div class="tag">✦ ARTHUR_M ✦</div>
+        </div>
+
+        <!-- AVATAR -->
+        <div class="avatar-wrapper">
+            <div class="avatar-ring"></div>
+            <div class="avatar">AM</div>
+            <div class="avatar-glow"></div>
+        </div>
+
+        <!-- NAME -->
+        <h1>Arthur Morgan</h1>
+        <div class="subtitle"><span>✦</span> GUNSLINGER <span>✦</span> OUTLAW <span>✦</span></div>
+
+        <!-- BIO (TYPEWRITER) -->
+        <div class="bio-wrapper">
+            <div class="bio" id="typewriterBio"></div>
+        </div>
+
+        <!-- QUOTE -->
+        <div class="quote-box" id="quoteBox">
+            "<span class="qhl">Blessed are the peacemakers, for they shall be called the children of God.</span>"
+        </div>
+
+        <!-- STATS -->
+        <div class="stats">
+            <div class="stat-item">
+                <span class="stat-number" id="statMissions">0</span>
+                <span class="stat-label">🏆 Missions</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="statRating">0.0</span>
+                <span class="stat-label">⭐ Rating</span>
+            </div>
+            <div class="stat-item">
+                <span class="stat-number" id="statFollowers">0</span>
+                <span class="stat-label">👥 Followers</span>
+            </div>
+        </div>
+
+        <!-- LINKS -->
+        <div class="links">
+            <a href="https://t.me/arthurmorganrs" target="_blank" id="copyTelegram">
+                <span class="icon">✈️</span> Telegram
+                <span class="copy-tip" id="copyTelegramTip">📋 Copied!</span>
+            </a>
+            <a href="https://tiktok.com/@arthurmorganrs" target="_blank" id="copyTikTok">
+                <span class="icon">🎵</span> TikTok
+                <span class="copy-tip" id="copyTikTokTip">📋 Copied!</span>
+            </a>
+        </div>
+
+        <!-- LEVEL -->
+        <div class="level">
+            <span class="lvl" id="levelDisplay">LEVEL 42</span>
+            <div class="bar-wrap" id="levelBarWrap">
+                <div class="bar-fill" id="levelBarFill"></div>
+            </div>
+            <span class="xp" id="xpDisplay">XP 7,600 / 10,000</span>
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        // 1. CURSOR GLOW
+        // ============================================================
+        const cursor = document.getElementById('cursorGlow');
+        let cursorX = 0,
+            cursorY = 0;
+
+        document.addEventListener('mousemove', (e) => {
+            cursorX = e.clientX;
+            cursorY = e.clientY;
+            cursor.style.left = cursorX + 'px';
+            cursor.style.top = cursorY + 'px';
+        });
+
+        document.addEventListener('mousedown', () => cursor.classList.add('active'));
+        document.addEventListener('mouseup', () => cursor.classList.remove('active'));
+
+        // ============================================================
+        // 2. TYPEWRITER
+        // ============================================================
+        const bioLines = [
+            '👋 <span class="hl">Arthur Morgan</span> here.',
+            '🌵 A simple man from the <span class="hl">Wild West</span>.',
+            '🏇 Loyal to my family, searching for <span class="hl">redemption</span>.'
+        ];
+
+        let lineIndex = 0,
+            charIndex = 0,
+            isDeleting = false;
+        const bioEl = document.getElementById('typewriterBio');
+
+        function typeWriter() {
+            const currentLine = bioLines[lineIndex];
+            const cleanLine = currentLine.replace(/<[^>]*>/g, '');
+            const tags = currentLine.match(/<[^>]*>/g) || [];
+
+            if (!isDeleting) {
+                let displayText = '';
+                let tagIndex = 0;
+                let charCount = 0;
+
+                for (let i = 0; i < currentLine.length; i++) {
+                    if (currentLine[i] === '<') {
+                        while (currentLine[i] !== '>') {
+                            displayText += currentLine[i];
+                            i++;
+                        }
+                        displayText += currentLine[i];
+                        continue;
+                    }
+                    if (charCount < charIndex) {
+                        displayText += currentLine[i];
+                        charCount++;
+                    } else {
+                        break;
+                    }
+                }
+
+                // Fallback: if displayText is empty, show raw text
+                if (!displayText.trim()) {
+                    displayText = currentLine.substring(0, charIndex);
+                }
+
+                bioEl.innerHTML = displayText + '<span class="cursor-blink"></span>';
+
+                charIndex++;
+
+                if (charIndex > currentLine.replace(/<[^>]*>/g, '').length) {
+                    isDeleting = true;
+                    setTimeout(typeWriter, 2000);
+                    return;
+                }
+                setTimeout(typeWriter, 40 + Math.random() * 30);
+            } else {
+                // Deleting
+                let displayText = '';
+                let tagIndex = 0;
+                let charCount = 0;
+
+                for (let i = 0; i < currentLine.length; i++) {
+                    if (currentLine[i] === '<') {
+                        while (currentLine[i] !== '>') {
+                            displayText += currentLine[i];
+                            i++;
+                        }
+                        displayText += currentLine[i];
+                        continue;
+                    }
+                    if (charCount < charIndex - 1) {
+                        displayText += currentLine[i];
+                        charCount++;
+                    } else {
+                        break;
+                    }
+                }
+
+                if (!displayText.trim()) {
+                    displayText = currentLine.substring(0, charIndex - 1);
+                }
+
+                bioEl.innerHTML = displayText + '<span class="cursor-blink"></span>';
+
+                charIndex--;
+
+                if (charIndex < 0) {
+                    isDeleting = false;
+                    lineIndex = (lineIndex + 1) % bioLines.length;
+                    charIndex = 0;
+                    // Clear and start next line
+                    if (lineIndex === 0) {
+                        bioEl.innerHTML = '<span class="cursor-blink"></span>';
+                        setTimeout(typeWriter, 300);
+                        return;
+                    }
+                    setTimeout(typeWriter, 300);
+                    return;
+                }
+                setTimeout(typeWriter, 20 + Math.random() * 20);
+            }
+        }
+
+        // Start typewriter after page load
+        setTimeout(typeWriter, 500);
+
+        // ============================================================
+        // 3. QUOTE ROTATOR
+        // ============================================================
+        const quotes = [
+            '"<span class="qhl">Blessed are the peacemakers, for they shall be called the children of God.</span>"',
+            '"<span class="qhl">We\'re more ghosts than people.</span>"',
+            '"<span class="qhl">I have a plan, Arthur. You just have to trust me.</span>"',
+            '"<span class="qhl">Revenge is a fool\'s game.</span>"',
+            '"<span class="qhl">Loyalty is everything.</span>"'
+        ];
+
+        let quoteIndex = 0;
+        const quoteEl = document.getElementById('quoteBox');
+
+        setInterval(() => {
+            quoteIndex = (quoteIndex + 1) % quotes.length;
+            quoteEl.innerHTML = quotes[quoteIndex];
+        }, 8000);
+
+        // ============================================================
+        // 4. STATS COUNTER
+        // ============================================================
+        const stats = [
+            { el: document.getElementById('statMissions'), target: 127, current: 0 },
+            { el: document.getElementById('statRating'), target: 49, current: 0 },
+            { el: document.getElementById('statFollowers'), target: 1200, current: 0 }
+        ];
+
+        function animateStats() {
+            stats.forEach(stat => {
+                if (stat.current < stat.target) {
+                    const increment = Math.ceil((stat.target - stat.current) / 20);
+                    stat.current += increment;
+                    if (stat.current > stat.target) stat.current = stat.target;
+                    if (stat.target === 49) {
+                        stat.el.textContent = (stat.current / 10).toFixed(1);
+                    } else {
+                        stat.el.textContent = stat.current;
+                    }
+                }
+            });
+            if (stats.some(s => s.current < s.target)) {
+                requestAnimationFrame(animateStats);
+            }
+        }
+
+        setTimeout(animateStats, 1000);
+
+        // ============================================================
+        // 5. ONLINE TIMER
+        // ============================================================
+        let seconds = 0;
+        const timerEl = document.getElementById('onlineTime');
+
+        setInterval(() => {
+            seconds++;
+            const h = String(Math.floor(seconds / 3600)).padStart(2, '0');
+            const m = String(Math.floor((seconds % 3600) / 60)).padStart(2, '0');
+            const s = String(seconds % 60).padStart(2, '0');
+            timerEl.textContent = `⏱ ${h}:${m}:${s}`;
+        }, 1000);
+
+        // ============================================================
+        // 6. LEVEL CLICK (Level Up)
+        // ============================================================
+        let level = 42;
+        let xp = 7600;
+        const maxXp = 10000;
+        const levelEl = document.getElementById('levelDisplay');
+        const barFill = document.getElementById('levelBarFill');
+        const xpEl = document.getElementById('xpDisplay');
+
+        function updateLevel() {
+            levelEl.textContent = `LEVEL ${level}`;
+            const percent = Math.min((xp / maxXp) * 100, 100);
+            barFill.style.width = percent + '%';
+            xpEl.textContent = `XP ${xp.toLocaleString()} / ${maxXp.toLocaleString()}`;
+        }
+
+        document.getElementById('levelBarWrap').addEventListener('click', () => {
+            xp += 500;
+            if (xp >= maxXp) {
+                xp = xp - maxXp;
+                level++;
+            }
+            updateLevel();
+            // Haptic feedback via animation
+            barFill.style.transition = 'width 0.3s ease';
+            setTimeout(() => barFill.style.transition = 'width 0.5s ease', 300);
+        });
+
+        // ============================================================
+        // 7. 3D CARD TILT
+        // ============================================================
+        const card = document.getElementById('card3d');
+
+        card.addEventListener('mousemove', (e) => {
+            const rect = card.getBoundingClientRect();
+            const x = (e.clientX - rect.left) / rect.width - 0.5;
+            const y = (e.clientY - rect.top) / rect.height - 0.5;
+            card.style.transform =
+                `rotateY(${x * 8}deg) rotateX(${-y * 8}deg) translateY(-5px)`;
+        });
+
+        card.addEventListener('mouseleave', () => {
+            card.style.transform = 'rotateY(0deg) rotateX(0deg) translateY(0px)';
+        });
+
+        // ============================================================
+        // 8. COPY LINKS
+        // ============================================================
+        function setupCopy(linkId, tipId, text) {
+            const link = document.getElementById(linkId);
+            const tip = document.getElementById(tipId);
+
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                navigator.clipboard.writeText(text).then(() => {
+                    tip.classList.add('show');
+                    setTimeout(() => tip.classList.remove('show'), 1500);
+                });
+            });
+        }
+
+        setupCopy('copyTelegram', 'copyTelegramTip', '@arthurmorganrs');
+        setupCopy('copyTikTok', 'copyTikTokTip', '@arthurmorganrs');
+
+        // ============================================================
+        // 9. THEME TOGGLE (Dark/Light)
+        // ============================================================
+        const themeToggle = document.getElementById('themeToggle');
+        let isDark = true;
+
+        themeToggle.addEventListener('click', () => {
+            isDark = !isDark;
+            document.body.classList.toggle('light-theme', !isDark);
+            themeToggle.textContent = isDark ? '🌙' : '☀️';
+        });
+
+        // ============================================================
+        // 10. PARTICLES (Background)
+        // ============================================================
+        for (let i = 0; i < 40; i++) {
+            const p = document.createElement('div');
+            p.className = 'particle';
+            const size = Math.random() * 3 + 1.5;
+            p.style.width = size + 'px';
+            p.style.height = size + 'px';
+            p.style.left = Math.random() * 100 + '%';
+            p.style.animationDuration = (Math.random() * 18 + 12) + 's';
+            p.style.animationDelay = (Math.random() * 15) + 's';
+            p.style.boxShadow = `0 0 ${size * 6}px rgba(0, 200, 255, 0.15)`;
+            document.body.appendChild(p);
+        }
+
+        // ============================================================
+        // 11. CLICK RIPPLE EFFECT
+        // ============================================================
+        document.addEventListener('click', (e) => {
+            const ripple = document.createElement('div');
+            ripple.style.cssText = `
+                position: fixed;
+                left: ${e.clientX - 25}px;
+                top: ${e.clientY - 25}px;
+                width: 50px;
+                height: 50px;
+                border-radius: 50%;
+                border: 2px solid rgba(0, 200, 255, 0.2);
+                pointer-events: none;
+                z-index: 999;
+                animation: rippleAnim 0.8s ease-out forwards;
+            `;
+            document.body.appendChild(ripple);
+            setTimeout(() => ripple.remove(), 800);
+        });
+
+        // Add ripple keyframe if not exists
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            @keyframes rippleAnim {
+                to {
+                    transform: scale(4);
+                    opacity: 0;
+                }
+            }
+        `;
+        document.head.appendChild(styleSheet);
+
+        console.log('🔥 Arthur Morgan Ultimate Bio loaded!');
+    </script>
+
+</body>
+</html>
